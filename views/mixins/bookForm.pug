@@ -1,0 +1,33 @@
+mixin booksForm(book, genre, saveUrl, cancelUrl)
+
+    div.form-container
+        form(action=saveUrl method='post')
+            div.form-input
+                label(for='title') Book Title
+                input(id='title' name='title' value= books.title)
+
+            div.form-input
+                label(for='author') Author (s)
+                input(id='author' name='author' value= books.author)
+
+            div.form-input
+                label(for='publisher') Publisher
+                textarea(id='publisher' name='publisher' value= books.publisher)
+
+            div.form-input
+                label(for='genre') Genre
+                select(id='genre' name='genre')
+                    each genre in genres
+                        option(value=genre selected = (genre === books.genre)) #{genre}
+
+            div.form-input
+                label(for='pages') Pages
+                textarea(id='pages' name='pages' value= books.pages)
+
+            div.form-input
+                label(for='description') Book Description
+                textarea(id='description' name='description' rows=18 cols=80) #{books.description}
+
+            div.form-buttons
+                a.button(href=cancelUrl) Cancel
+                button.button.primary(type='submit') Save
